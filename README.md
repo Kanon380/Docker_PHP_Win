@@ -32,6 +32,8 @@ docker-compose ps
 docker-compose down --rmi all --volumes --remove-orphans
 ```
 
+## Laravel command
+
 ### Laravel install
 ```sh
 composer create-project --prefer-dist laravel/laravel _project_name_
