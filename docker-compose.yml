@@ -4,7 +4,7 @@ services:
   web:
     build: './docker'
     ports:
-      - 8080:80
+      - 5173:80
     privileged: true
     volumes:
       - ./server/:/var/www/html
@@ -15,9 +15,9 @@ services:
     environment:
       MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
       MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: manual
-      MYSQL_USER: docker
-      MYSQL_PASSWORD: docker
+      MYSQL_DATABASE: laravel
+      MYSQL_USER: root
+      MYSQL_PASSWORD: root
       TZ: 'Asia/Tokyo'
     command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
     volumes:
@@ -31,8 +31,8 @@ services:
     image: phpmyadmin/phpmyadmin
     environment:
       - PMA_ARBITRARY=1
-      - PMA_HOSTS=db-host
+      - PMA_HOSTS=db
       - PMA_USER=root
       - PMA_PASSWORD=root
     ports:
-      - 8081:80
+      - 5174:80
