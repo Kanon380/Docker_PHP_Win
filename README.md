@@ -34,10 +34,10 @@ docker-compose down --rmi all --volumes --remove-orphans
 
 ### Laravel install
 ```sh
-composer create-project --prefer-dist laravel/laravel [project_name]
+composer create-project --prefer-dist laravel/laravel _project_name_
 exit
 docker-compose down
-docker-compose.yml→./server/[Folder_name]:/var/www/html
+docker-compose.yml→./server/_Folder_name_:/var/www/html
 docker-compose up -d
 docker-compose exec web bash
 composer install
