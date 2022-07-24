@@ -46,7 +46,7 @@ composer install
 npm i
 ```
 
-### Laravel env
+### env
 ```env
 DB_CONNECTION=mysql
 DB_HOST=db
@@ -65,15 +65,69 @@ npm run dev
 php artisan migrate
 ```
 
-### Laravel logger
+### logger
 ```sh
 chown www-data storage/ -R
 ```
 
-### Laravel cache clear
+### cache clear
 ```sh
 php artisan cache:clear
 php artisan config:clear
 php artisan route:clear
 php artisan view:clear
+```
+
+### Migration, Factory, Seeder, Policy, Controller and FormRequest
+```sh
+php artisan make:model _ModelName_ --all
+```
+
+### Seeder
+```sh
+php artisan make:seeder UserSeeder
+```
+#### ModelSeeder.php
+```php
+<?php
+
+namespace Database\Seeders;
+
+use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
+
+class DatabaseSeeder extends Seeder
+{
+  public function run(){
+    DB::table('users')->insert([
+        'name' => Str::random(10),
+        'email' => Str::random(10).'@gmail.com',
+        'password' => Hash::make('password'),
+    ]);
+  }
+}
+```
+#### DatabaseSeeder.php
+```php
+<?php
+
+public function run()
+{
+  $this->call([
+    UserSeeder::class,
+    PostSeeder::class,
+  ]);
+}
+```
+#### Exexute seeder
+```sh
+php artisan db:seed
+```
+```sh
+php artisan db:seed --class=UserSeeder
+```
+```sh
+php artisan migrate:fresh --seed
 ```
